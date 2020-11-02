@@ -44,6 +44,7 @@ namespace Parkour
             Player.Input.Climb = Input.GetKey(KeyCode.R);
             Player.Input.ClimbUp = Input.GetAxisRaw("Vertical");
 
+
         }
         private void Update()
         {

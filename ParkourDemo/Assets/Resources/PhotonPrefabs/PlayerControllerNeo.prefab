@@ -196,6 +196,8 @@ MonoBehaviour:
   Charged: 0
   AbleToClimb: 0
   Climb: 0
+  AbleToVault: 0
+  Vault: 0
 --- !u!114 &1171291868235298245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +600,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 2
     Name: ClimbQuit
+  - Type: 4
+    SynchronizeType: 2
+    Name: Vaulting
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

@@ -46,7 +46,8 @@ namespace Parkour
             Hanging,
             Trans,
             Lifting,
-            Climbing
+            Climbing,
+            Vaulting
         }
         //This will be useful in future
         public enum AirState
@@ -128,6 +129,12 @@ namespace Parkour
         private GameObject Ladder;
         private Vector3 ClimbOffset;
         private float ClimbSpeed = 0.3f;
+
+        //All of this is related to Vaulting
+
+        public bool AbleToVault;
+        public bool Vault;
+        private GameObject VaultObject;
         private Vector3 VaultOffset;
 
 
@@ -173,6 +180,7 @@ namespace Parkour
             CharacterAnimator.SetFloat("ClimbUp", Input.ClimbUp);
             CharacterAnimator.SetBool("Climb", Climb);
             CharacterAnimator.SetBool("ClimbQuit", Input.Jump);
+            CharacterAnimator.SetBool("Vaulting", Vault);
         }
 
 
@@ -201,6 +209,7 @@ namespace Parkour
                     Hanging();
                     Slide();
                     Climbing();
+                    Vaulting();
                     break;
 
                 case PlayerState.NORMAL:
@@ -213,6 +222,7 @@ namespace Parkour
                     PickUp();
                     Slide();
                     Climbing();
+                    Vaulting();
                     break;
 
                 case PlayerState.Dash:
@@ -553,6 +563,59 @@ namespace Parkour
                 carryObject = false;
                 Item = null;
             }
+        }
+
+        //special movement vaulting
+        //Check Vaulting
+
+        void Vaulting()
+        {
+            if (!Grounded)
+            {
+                return;
+            }
+
+            Vector3 DetectCenter = transform.position + transform.forward * 0.5f + transform.up * 0.6f;
+            Vector3 DetectSize = new Vector3(0.8f, 1f, 0.6f);
+            Collider[] VaultObjects = Physics.OverlapBox(DetectCenter, DetectSize, transform.rotation, 1 << 11);
+            AbleToVault = VaultObjects.Length >= 1;
+            if (AbleToVault)
+            {
+                VaultObject = VaultObjects[0].gameObject;
+            }
+
+            Vault = AbleToVault && Input.Grab;
+            if (Vault)
+            {
+
+                Vector3 Direction = VaultObject.transform.position - transform.position;
+                Vector3 Offset = Vector3.Project(Direction, VaultObject.transform.right);
+                //transform.rotation = VaultObject.transform.rotation;
+                VaultOffset = -Offset;
+                State = PlayerState.Vaulting;
+            }
+
+        }
+
+        public void FixVaultingUp()
+        {
+            if (VaultObject != null)
+            {
+                //transform.position =Vector3.Lerp(transform.position,VaultOffset + VaultObject.transform.position+VaultObject.transform.up*VaultObject.transform.localScale.y,Time.deltaTime);
+                transform.position = VaultOffset + VaultObject.transform.position + VaultObject.transform.up * VaultObject.transform.localScale.y;
+                cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 1.7f, -2), 5f * Time.deltaTime);
+            }
+        }
+
+
+        public void FinishVaultingUp()
+        {
+            print("Finish the PullUp");
+            State = PlayerState.NORMAL;
+            Vault = false;
+            CurrentSpeed = SpeedValue;
+            cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 1.7f, 0), 5f * Time.deltaTime);
+
         }
 
         // special movement WallClimbing

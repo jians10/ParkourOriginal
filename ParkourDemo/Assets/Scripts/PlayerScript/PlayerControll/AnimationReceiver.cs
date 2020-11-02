@@ -44,6 +44,25 @@ namespace Parkour {
 
         }
 
+
+        void FinishVaultingUp()
+        {
+
+            Controller.FinishVaultingUp();
+
+        }
+
+        void FixVaultingUp()
+        {
+
+
+            Controller.FixVaultingUp();
+
+
+        }
+
+
+
     }
 
 }

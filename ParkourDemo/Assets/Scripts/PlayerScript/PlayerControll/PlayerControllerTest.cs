@@ -5,6 +5,7 @@ using Photon.Pun;
 //using Photon.Pun.UtilityScripts;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 //using UnityEngine.UIElements;
 
 namespace Parkour
@@ -32,6 +33,8 @@ namespace Parkour
             public bool Throw;
             public bool Charging;
             public float LiftDirection;
+            public float ClimbUp;
+            public bool Climb;
         }
         public enum PlayerState
         {
@@ -42,7 +45,8 @@ namespace Parkour
             Sonic,
             Hanging,
             Trans,
-            Lifting
+            Lifting,
+            Climbing
         }
         //This will be useful in future
         public enum AirState
@@ -118,6 +122,19 @@ namespace Parkour
         private float DistanceZ;
         private GameObject Edge;
         private Vector3 GrabOffset;
+        // This are all parameter related to Climbing
+        public bool AbleToClimb;
+        public bool Climb;
+        private GameObject Ladder;
+        private Vector3 ClimbOffset;
+        private float ClimbSpeed = 0.3f;
+        private Vector3 VaultOffset;
+
+
+
+
+
+
         private void Awake()
         {
             wallrun = GetComponent<WallRunMovement>();
@@ -153,6 +170,9 @@ namespace Parkour
             CharacterAnimator.SetBool("UpTheWall", UpTheWall);
             CharacterAnimator.SetBool("DownTheWall", Input.PullDown);
             CharacterAnimator.SetBool("CarryingObject", State == PlayerState.Lifting);
+            CharacterAnimator.SetFloat("ClimbUp", Input.ClimbUp);
+            CharacterAnimator.SetBool("Climb", Climb);
+            CharacterAnimator.SetBool("ClimbQuit", Input.Jump);
         }
 
 
@@ -180,6 +200,7 @@ namespace Parkour
                     NeoMove();
                     Hanging();
                     Slide();
+                    Climbing();
                     break;
 
                 case PlayerState.NORMAL:
@@ -191,6 +212,7 @@ namespace Parkour
                     Hanging();
                     PickUp();
                     Slide();
+                    Climbing();
                     break;
 
                 case PlayerState.Dash:
@@ -215,7 +237,17 @@ namespace Parkour
                         Item.gameObject.transform.localPosition = new Vector3(DistanceX, DistanceY, DistanceZ);
                     }
                     break;
-
+                case PlayerState.Climbing:
+                    Grounded = Physics.OverlapBox(transform.position, new Vector3(0.2f, 0.2f, 0.2f)).Length > 1;
+                    Rigidbody.velocity = Vector3.zero;
+                    CurrentSpeed = 0;
+                    ClimbUp();
+                    ClimbQuit();
+                    ClimbingUp();
+                    cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 1.7f, -3), 5f * Time.deltaTime);
+                    verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
+                    cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
+                    break;
 
             }
 
@@ -335,6 +367,16 @@ namespace Parkour
 
         // This is to separate the basic movement and special skills
 
+
+
+
+
+
+
+
+
+
+        //PickUp
         void PickUp()
         {
 
@@ -513,9 +555,77 @@ namespace Parkour
             }
         }
 
+        // special movement WallClimbing
 
+        // check wall climbing 
+        void Climbing()
+        {
 
+            Vector3 DetectCenter = transform.position + transform.forward * 0.5f + transform.up * 1.6f;
+            Vector3 DetectSize = new Vector3(0.8f, 1f, 0.6f);
+            Collider[] Grab = Physics.OverlapBox(DetectCenter, DetectSize, transform.rotation, 1 << 10);
+            AbleToClimb = Grab.Length >= 1;
+            if (AbleToClimb)
+            {
+                Ladder = Grab[0].gameObject;
+            }
+            Climb = AbleToClimb && Input.Climb;
+            if (Climb)
+            {
+                print("Climbing");
+                Vector3 Direction = Ladder.transform.position - transform.position;
+                Vector3 Offset = Vector3.Project(Direction, Ladder.transform.up);
+                transform.rotation = Ladder.transform.rotation;
+                this.transform.position = Ladder.transform.position - Offset + Ladder.transform.forward * -0.4f;
+                ClimbOffset = Ladder.transform.position - Offset + Ladder.transform.forward * -0.4f;
+                Rigidbody.velocity = Vector3.zero;
+                State = PlayerState.Climbing;
 
+            }
+        }
+
+        void ClimbUp()
+        {
+            if (Input.ClimbUp > 0.2f || Input.ClimbUp < -0.2f)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(ClimbOffset.x, transform.position.y + Input.ClimbUp * ClimbSpeed, ClimbOffset.z), Time.deltaTime * 2.5f);
+
+            }
+        }
+        void ClimbQuit()
+        {
+            if (Input.Jump)
+            {
+                Climb = false;
+                Ladder = null;
+                Grab = false;
+                Edge = null;
+                State = PlayerState.NORMAL;
+            }
+        }
+        void ClimbingUp()
+        {
+            Vector3 DetectCenter = transform.position + transform.forward * 0.5f + transform.up * 1.6f;
+            Vector3 DetectSize = new Vector3(0.8f, 1f, 0.6f);
+            Collider[] Grabing = Physics.OverlapBox(DetectCenter, DetectSize, transform.rotation, 1 << 9);
+            AbletoGrab = Grabing.Length >= 1;
+            if (AbletoGrab)
+            {
+                Edge = Grabing[0].gameObject;
+            }
+            Grab = AbletoGrab;
+            if (Edge != null && Grab)
+            {
+                Ladder = null;
+                Climb = false;
+                Vector3 Direction = Edge.transform.position - transform.position;
+                Vector3 Offset = Vector3.Project(Direction, Edge.transform.right);
+                transform.rotation = Edge.transform.rotation;
+                GrabOffset = Edge.transform.up * -2.3f + Edge.transform.forward * (-0.1f) - Offset;
+                this.transform.position = Edge.transform.position + GrabOffset;
+                State = PlayerState.Hanging;
+            }
+        }
 
 
         // Special ability Wall hanning 

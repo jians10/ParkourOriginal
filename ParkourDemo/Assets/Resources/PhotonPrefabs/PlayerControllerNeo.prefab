@@ -194,6 +194,8 @@ MonoBehaviour:
   PushForce: 0
   MaxForce: 1000
   Charged: 0
+  AbleToClimb: 0
+  Climb: 0
 --- !u!114 &1171291868235298245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +589,15 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 2
     Name: CarryingObject
+  - Type: 1
+    SynchronizeType: 2
+    Name: ClimbUp
+  - Type: 4
+    SynchronizeType: 2
+    Name: Climb
+  - Type: 4
+    SynchronizeType: 2
+    Name: ClimbQuit
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

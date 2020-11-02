@@ -41,6 +41,8 @@ namespace Parkour
             Player.Input.Charging = Input.GetMouseButton(0);
             Player.Input.Throw = Input.GetMouseButtonUp(0);
             Player.Input.LiftDirection = Input.GetAxisRaw("Vertical");
+            Player.Input.Climb = Input.GetKey(KeyCode.R);
+            Player.Input.ClimbUp = Input.GetAxisRaw("Vertical");
 
         }
         private void Update()

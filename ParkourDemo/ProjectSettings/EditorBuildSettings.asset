@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hide & Seek.unity
     guid: 9ce71009ec1398b4285e937c9a334dd8
+  - enabled: 1
+    path: Assets/Scenes/Environment.unity
+    guid: 1f267030d7c1f1543bc49169d0a12511
   m_configObjects: {}

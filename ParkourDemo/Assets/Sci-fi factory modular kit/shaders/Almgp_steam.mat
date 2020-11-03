@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Almgp_steam
+  m_Shader: {fileID: 4800000, guid: 9cf5fccd6276dc047b224114c00c3fd7, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Diffusemap:
+        m_Texture: {fileID: 2800000, guid: fd3d6d280525d2542a2ba61c2fdb724b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emissionmap:
+        m_Texture: {fileID: 2800000, guid: 95b3f9eddc224a94fa7319f74a9c0787, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Magma_edges:
+        m_Texture: {fileID: 2800000, guid: 43b8c4171331be34db46a853d2a237fe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normalmapaheight:
+        m_Texture: {fileID: 2800000, guid: 6ae2e98a1f700ac4caee012e4f272396, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _heightalpha:
+        m_Texture: {fileID: 2800000, guid: 6ae2e98a1f700ac4caee012e4f272396, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _lava_flowed:
+        m_Texture: {fileID: 2800000, guid: 43b8c4171331be34db46a853d2a237fe, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _node_2046:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_3744:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_410:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_9324:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_9465:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_975:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _smoketexture:
+        m_Texture: {fileID: 2800000, guid: 1d1afc68a1939374ab308cdd52ba04c1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _steam:
+        m_Texture: {fileID: 2800000, guid: 1d1afc68a1939374ab308cdd52ba04c1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _Distanse: -1.72
+    - _Distansea: 256
+    - _Distanseexponent: 0
+    - _Distansefallof: -0.86
+    - _DstBlend: 0
+    - _EmissionScaleUI: 0
+    - _Gloss: 0.179
+    - _Glossiness: 0.5
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Specular: 0.743
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - _deph: 0.1238
+    - _distansefallof: 1.18
+    - _edgeexponent: 0.99403
+    - _edgeexponent_close: 0.99857
+    - _edgeexponent_far: 0.99606
+    - _emissionpower: 0.208
+    - _exponent: 1.1
+    - _falloff: 523.5
+    - _gloss: 0
+    - _lavatile: 0.008
+    - _node_6906: 0.97
+    - _node_8953: 115.45
+    - _node_9024: 0
+    - _specular: 0
+    - _speed: 0.38
+    - _steam_tile: 0.03
+    - _steam_tile2: 0.02
+    - _steamglowblur: 5.38
+    - _steamtile2: 0.0095
+    - _tile: 126.84
+    - _tiling: 79.2
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
+    - _heatcolor: {r: 0.81960785, g: 0.34245452, b: 0, a: 1}
+    - _lava_color: {r: 1, g: 0.8926976, b: 0.8156863, a: 1}
+    - _smokecolor: {r: 0.827451, g: 0.2178787, b: 0.048673585, a: 1}
+    - _steamdirect: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}

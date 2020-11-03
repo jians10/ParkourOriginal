@@ -65,13 +65,16 @@ namespace Parkour
 
 
         [PunRPC]
-        void SetTarget(int id) {
+        void SetTarget(int id)
+        {
 
             GameObject target= PhotonView.Find(id).gameObject;
             if (target.GetComponent<Mutant>() != null)
             {
                 target.GetComponent<Mutant>().mutant = true;
             }
+
         }
+
     }
 }

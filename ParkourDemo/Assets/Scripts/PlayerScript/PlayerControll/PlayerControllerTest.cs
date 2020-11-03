@@ -5,7 +5,6 @@ using Photon.Pun;
 //using Photon.Pun.UtilityScripts;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 //using UnityEngine.UIElements;
 
 namespace Parkour
@@ -22,7 +21,7 @@ namespace Parkour
             public float RunZ;
             public bool Jump;
             public bool Sprint;
-            public bool WallRun;
+            //public bool WallRun;
             public bool Dash;
             public bool Jet;
             public bool Slide;
@@ -39,7 +38,7 @@ namespace Parkour
         public enum PlayerState
         {
             NORMAL,
-            WallRunning,
+           // WallRunning,
             Dash,
             Mutant,
             Sonic,
@@ -60,10 +59,10 @@ namespace Parkour
 
         public Transform orientation;
 
-        [SerializeField] GameObject cameraHolder;
-        [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
+        [SerializeField]protected GameObject cameraHolder;
+        [SerializeField]protected float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
 
-        float verticalLookRotation;
+        protected float verticalLookRotation;
         public float MaxSpeed = 7f;
         public const float SpeedValue = 7f;
         public const float acc = 3f;
@@ -79,7 +78,7 @@ namespace Parkour
         Vector3 moveDirection;
         public float Rotation;
         public float CurrentSpeed;
-        protected WallRunMovement wallrun;
+        //protected WallRunMovement wallrun;
         public bool Grounded = true;
         public float currentCoolDown;
         public float TotalTime;
@@ -92,7 +91,7 @@ namespace Parkour
         public float SonicdurationTime = 10f;
         public bool EndSonic = true;
         public bool AbleToSlide = false;
-        private float tempVelocity;
+        protected float tempVelocity;
         //ParticleSystem Related to the speed
         public ParticleSystem SpeedEffect;
         public ParticleSystem FlashEffect;
@@ -117,41 +116,40 @@ namespace Parkour
         public float PushForce = 0;
         public float MaxForce = 1000;
         public bool Charged;
-        private Vector3 ObjectDistance;
-        private float DistanceX;
-        private float DistanceY;
-        private float DistanceZ;
-        private GameObject Edge;
-        private Vector3 GrabOffset;
+        protected float DistanceX;
+        protected float DistanceY;
+        protected float DistanceZ;
+        protected GameObject Edge;
+        protected Vector3 GrabOffset;
         // This are all parameter related to Climbing
         public bool AbleToClimb;
         public bool Climb;
-        private GameObject Ladder;
-        private Vector3 ClimbOffset;
-        private float ClimbSpeed = 0.3f;
+        protected GameObject Ladder;
+        protected Vector3 ClimbOffset;
+        protected float ClimbSpeed = 0.3f;
 
         //All of this is related to Vaulting
 
         public bool AbleToVault;
         public bool Vault;
-        private GameObject VaultObject;
-        private Vector3 VaultOffset;
+        protected GameObject VaultObject;
+        protected Vector3 VaultOffset;
 
 
 
 
 
 
-        private void Awake()
+        protected void Awake()
         {
-            wallrun = GetComponent<WallRunMovement>();
+           // wallrun = GetComponent<WallRunMovement>();
             Rigidbody = GetComponent<Rigidbody>();
             CharacterAnimator = GetComponentInChildren<Animator>();
             MainCollider = GetComponent<CapsuleCollider>();
             PV = GetComponent<PhotonView>();
         }
 
-        private void Update()
+        protected void Update()
         {
             // if (photonView.IsMine)
             //     return
@@ -169,7 +167,7 @@ namespace Parkour
             CharacterAnimator.SetFloat("Rotation", Rotation);
             CharacterAnimator.SetFloat("Speed", CurrentSpeed);
             CharacterAnimator.SetBool("Dash", State == PlayerState.Dash);
-            CharacterAnimator.SetBool("IsWallRunning", wallrun.isWallRunning);
+           // CharacterAnimator.SetBool("IsWallRunning", wallrun.isWallRunning);
             CharacterAnimator.SetBool("Slide", Input.Slide);
             CharacterAnimator.SetBool("Jump", Input.Jump);
             CharacterAnimator.SetBool("flying", Input.Jet);
@@ -187,7 +185,7 @@ namespace Parkour
 
 
 
-        void FixedUpdate()
+        protected void FixedUpdate()
         {
 
 
@@ -258,6 +256,8 @@ namespace Parkour
                     verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
                     cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
                     break;
+                case PlayerState.Mutant:
+                    break;
 
             }
 
@@ -267,13 +267,13 @@ namespace Parkour
             //Rigidbody.MovePosition(Rigidbody.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         }
 
-        private void LateUpdate()
+        protected void LateUpdate()
         {
             CharacterAnimator.transform.localPosition = Vector3.zero;
             CharacterAnimator.transform.localRotation = Quaternion.identity;
         }
 
-        void Look()
+        protected void Look()
         {
             if (!(AbleToSlide && Input.Slide))
             {
@@ -330,7 +330,7 @@ namespace Parkour
         }
 
 
-        void NeoMove()
+        protected void NeoMove()
         {
             //Apply forces to move player
 
@@ -387,7 +387,7 @@ namespace Parkour
 
 
         //PickUp
-        void PickUp()
+        protected void PickUp()
         {
 
             if (Input.PickUp && Grounded)
@@ -425,7 +425,7 @@ namespace Parkour
             }
         }
         [PunRPC]
-        void RiseTheObject(int ItemID, int ViewID, float LocalDistanceY)
+        protected void RiseTheObject(int ItemID, int ViewID, float LocalDistanceY)
         {
             Item = PhotonView.Find(ItemID).gameObject;
             PickUpController PickCon = Item.GetComponent<PickUpController>();
@@ -449,7 +449,7 @@ namespace Parkour
 
 
         [PunRPC]
-        void ThrowObjectAway(int ItemID, float PushForce, Vector3 pushDirection)
+        protected void ThrowObjectAway(int ItemID, float PushForce, Vector3 pushDirection)
         {
             Item = PhotonView.Find(ItemID).gameObject;
             PickUpController PickCon = Item.GetComponent<PickUpController>();
@@ -467,7 +467,7 @@ namespace Parkour
         }
 
 
-        void Slide()
+        protected void Slide()
         {
 
             if (Input.Slide)
@@ -485,7 +485,7 @@ namespace Parkour
         }
 
         [PunRPC]
-        void Squat()
+        protected void Squat()
         {
             Debug.Log("Squat");
             MainCollider.center = new Vector3(0, 0.433f, 0);
@@ -494,7 +494,7 @@ namespace Parkour
         }
 
         [PunRPC]
-        void Stand()
+        protected void Stand()
         {
             MainCollider.center = new Vector3(0, 0.866f, 0);
             MainCollider.height = 1.9f;
@@ -502,7 +502,7 @@ namespace Parkour
 
 
 
-        void Throw()
+        protected void Throw()
         {
             Debug.Log("Called");
             if (!carryObject || !IsThrowable)
@@ -555,7 +555,7 @@ namespace Parkour
 
 
 
-        void CheckCarrying()
+        protected void CheckCarrying()
         {
             if (carryObject == false && Item == null)
             {
@@ -568,7 +568,7 @@ namespace Parkour
         //special movement vaulting
         //Check Vaulting
 
-        void Vaulting()
+        protected void Vaulting()
         {
             if (!Grounded)
             {
@@ -621,7 +621,7 @@ namespace Parkour
         // special movement WallClimbing
 
         // check wall climbing 
-        void Climbing()
+        protected void Climbing()
         {
 
             Vector3 DetectCenter = transform.position + transform.forward * 0.5f + transform.up * 1.6f;
@@ -647,7 +647,7 @@ namespace Parkour
             }
         }
 
-        void ClimbUp()
+        protected void ClimbUp()
         {
             if (Input.ClimbUp > 0.2f || Input.ClimbUp < -0.2f)
             {
@@ -655,7 +655,7 @@ namespace Parkour
 
             }
         }
-        void ClimbQuit()
+        protected void ClimbQuit()
         {
             if (Input.Jump)
             {
@@ -666,7 +666,7 @@ namespace Parkour
                 State = PlayerState.NORMAL;
             }
         }
-        void ClimbingUp()
+        protected void ClimbingUp()
         {
             Vector3 DetectCenter = transform.position + transform.forward * 0.5f + transform.up * 1.6f;
             Vector3 DetectSize = new Vector3(0.8f, 1f, 0.6f);
@@ -693,14 +693,14 @@ namespace Parkour
 
         // Special ability Wall hanning 
 
-        void Hanging()
+        protected void Hanging()
         {
             //bool AbletoGrabRight = Physics.Raycast(transform.position + transform.up * up + transform.forward * forward + transform.right * 0.2f, transform.forward, RayDistance);
             //bool AbletoGrabLeft = Physics.Raycast(transform.position + transform.up * up + transform.forward * forward + transform.right * -0.2f, transform.forward, RayDistance);
-            Vector3 DetectCenter1 = transform.position + transform.forward * 0.25f + transform.up * 2.4f + transform.right*-0.25f;
+            Vector3 DetectCenter1 = transform.position + transform.forward * 0.25f + transform.up * 2.4f + transform.right * -0.25f;
             Vector3 DetectCenter2 = transform.position + transform.forward * 0.25f + transform.up * 2.4f + transform.right * 0.25f;
-            Vector3 DetectSize = new Vector3(0.2f,0.3f,0.25f);
-            Collider[] grabLeft= Physics.OverlapBox(DetectCenter1, DetectSize, transform.rotation, 1 << 9);
+            Vector3 DetectSize = new Vector3(0.2f, 0.3f, 0.25f);
+            Collider[] grabLeft = Physics.OverlapBox(DetectCenter1, DetectSize, transform.rotation, 1 << 9);
             Collider[] grabRight = Physics.OverlapBox(DetectCenter2, DetectSize, transform.rotation, 1 << 9);
             bool AbletoGrabRight = grabRight.Length >= 1;
             bool AbletoGrabLeft = grabLeft.Length >= 1;
@@ -716,29 +716,32 @@ namespace Parkour
                 Vector3 Direction = Edge.transform.position - transform.position;
                 Vector3 Offset = Vector3.Project(Direction, Edge.transform.right);
                 transform.rotation = Edge.transform.rotation;
-                GrabOffset= Edge.transform.up * -2.3f + Edge.transform.forward * (-0.1f) - Offset;
+                GrabOffset = Edge.transform.up * -2.3f + Edge.transform.forward * (-0.1f) - Offset;
                 this.transform.position = Edge.transform.position + GrabOffset;
                 State = PlayerState.Hanging;
-                
+
             }
         }
 
-        void HangingStable() {
+        protected void HangingStable()
+        {
 
-            if (Edge != null&&Grab) { 
-                transform.position= Edge.transform.position + GrabOffset;
+            if (Edge != null && Grab)
+            {
+                transform.position = Edge.transform.position + GrabOffset;
             }
-        
+
         }
-        void PullUp()
+        protected void PullUp()
         {
 
             UpTheWall = Input.PullUp;
-            if (UpTheWall) {
+            if (UpTheWall)
+            {
                 Grab = false;
             }
         }
-        void PullDown()
+        protected void PullDown()
         {
             if (Input.PullDown)
             {
@@ -778,26 +781,26 @@ namespace Parkour
         }
 
         // specialSkills___WallRun
-        void WallRun()
-        {
+       // void WallRun()
+       // {
+       //
+       //     if (Input.WallRun)
+       //     {
+       //         wallrun.ActivateWallRun = true;
+       //     }
+       //     else
+       //     {
+       //
+       //         wallrun.ActivateWallRun = false;
+       //
+       //     }
+       //     cameraHolder.transform.Rotate(0, 0, wallrun.curCamAngle);
 
-            if (Input.WallRun)
-            {
-                wallrun.ActivateWallRun = true;
-            }
-            else
-            {
-
-                wallrun.ActivateWallRun = false;
-
-            }
-            cameraHolder.transform.Rotate(0, 0, wallrun.curCamAngle);
-
-        }
+       // }
         //Special Skills__ Dash
 
 
-        void Dash()
+        protected void Dash()
         {
 
             currentCoolDown = currentCoolDown - Time.deltaTime * 2;
@@ -822,7 +825,7 @@ namespace Parkour
 
 
         }
-        void Dashing()
+        protected void Dashing()
         {
 
             DashdurationTime = DashdurationTime - Time.deltaTime * 2;
@@ -850,7 +853,7 @@ namespace Parkour
         }
 
         // draw and show the detector position 
-        void OnDrawGizmosSelected()
+        protected void OnDrawGizmosSelected()
         {
             // Draw a yellow sphere at the transform's position
             Gizmos.color = Color.yellow;
@@ -864,7 +867,7 @@ namespace Parkour
 
         // This is the counter we use to limit the time that we can do sonic running 
 
-        void SonicCounter()
+       protected  void SonicCounter()
         {
 
             SonicdurationTime = SonicdurationTime - Time.deltaTime;
@@ -886,7 +889,7 @@ namespace Parkour
             }
 
         }
-        void SpeedLine()
+        protected void SpeedLine()
         {
 
 
@@ -898,7 +901,7 @@ namespace Parkour
 
         }
 
-        void FlashLine()
+        protected void FlashLine()
         {
 
             bool FullSpeed = CurrentSpeed > MaxSpeed - 0.5;

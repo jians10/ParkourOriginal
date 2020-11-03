@@ -54,11 +54,7 @@ namespace Parkour {
 
         void FixVaultingUp()
         {
-
-
             Controller.FixVaultingUp();
-
-
         }
 
 

@@ -19,12 +19,12 @@ public class Mutant : MonoBehaviour
     private PlayerControllerTest controller;
     private Rigidbody rb;
 
-    void Start()
+    void Awake()
     {
       
         PV = GetComponent<PhotonView>();
         controller = GetComponent<PlayerControllerTest>();
-            rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,6 @@ public class Mutant : MonoBehaviour
         }
         if (rb == null) {
             return;    
-            
         }
 
         if (mutant) {
@@ -49,22 +48,31 @@ public class Mutant : MonoBehaviour
 
     }
 
-    [PunRPC]
-    void BeMutant(int mutantID) {
-        GameObject mutantplayer= PhotonView.Find(mutantID).gameObject;
-        if (mutantplayer != null&& mutantplayer.tag == "Player") {
-            Destroy(mutantplayer);
-        }   
+
+    public void BeginMutant() {
+        controller.State = PlayerControllerTest.PlayerState.Mutant;
+        int mutantID = PV.ViewID;
+        GameObject mutant=PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), transform.position, transform.rotation);
+        PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });
     }
 
 
-     private void OnCollisionEnter(Collision collision){
-        if (collision.gameObject.tag == "Mutant") {
+    [PunRPC]
+    void BeMutant(int mutantID) {
+            //GameObject mutantplayer= PhotonView.Find(mutantID).gameObject;
+            //if (mutantplayer != null&& mutantplayer.tag == "Player") {
+            //    Destroy(mutantplayer);
+            //}
+            Destroy(gameObject);
 
-           mutant = true;
-            
-        }    
-     }
+    }
 
+
+     //private void OnCollisionEnter(Collision collision){
+     //   if (collision.gameObject.tag == "Mutant") {
+     //      mutant = true; 
+     //   }    
+     //}
+        
     }
 }

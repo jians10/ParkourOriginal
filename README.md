@@ -25,7 +25,9 @@ Please check [Multi-player Experience Description](https://github.com/jians10/Pa
 
 ## Room Index
 Index 1: GameScene (This is our test scene so nothing fun to play around)
+
 Index 2: EnvironmentScene (This is the Speed Contest Mode)
+
 Index 3: Hide & Seek (This is the Hide & Seek Mode)
 
 ## Role Distribution:

@@ -582,7 +582,7 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Vaulting
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Attack
   m_SynchronizeLayers:
   - SynchronizeType: 2

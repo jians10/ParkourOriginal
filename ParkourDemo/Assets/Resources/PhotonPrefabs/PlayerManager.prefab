@@ -66,3 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efbd1b82207c4741a50a4d8fbbdff5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftBound: {x: 0, y: 0, z: 0}
+  RightBound: {x: 0, y: 0, z: 0}
+  ChaserPosition: {x: 0, y: 0, z: 0}

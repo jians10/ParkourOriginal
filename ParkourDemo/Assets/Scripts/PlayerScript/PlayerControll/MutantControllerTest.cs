@@ -185,12 +185,27 @@ namespace Parkour
 
         public void StartCheckingTarget(){
             CheckingTarget = true;
+            //toxin.SetActive(true);
+            PV.RPC("ActiveToxin", RpcTarget.All, new object[] { });
+        }
+
+        [PunRPC]
+        void ActiveToxin()
+        {
             toxin.SetActive(true);
         }
 
+        [PunRPC]
+        void InActiveToxin()
+        {
+            toxin.SetActive(false);
+        }
+
+
         public void EndCheckingTarget(){
             CheckingTarget = false;
-            toxin.SetActive(false);
+            //toxin.SetActive(false);
+            PV.RPC("InActiveToxin", RpcTarget.All, new object[] { });
         }
 
 

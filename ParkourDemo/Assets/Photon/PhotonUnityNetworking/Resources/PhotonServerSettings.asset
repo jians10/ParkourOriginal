@@ -51,6 +51,8 @@ MonoBehaviour:
   - Stand
   - Teleport
   - MutantTarget
+  - ActiveToxin
+  - InActiveToxin
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

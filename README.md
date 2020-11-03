@@ -1,5 +1,5 @@
 # Parkour
-Please check [ChangeLog (Weekly)](https://github.com/gongr2/GameKour/blob/main/ChangeLog%20(Weekly).md) for **Up-To-Date Information** & **Control Guide** of our project.
+Please check [ChangeLog (Weekly)](https://github.com/jians10/ParkourOriginal/blob/main/ChangeLog%20(Weekly).md) for **Up-To-Date Information** & **Control Guide** of our project.
 
 Please check [Multi-player Experience Description](https://github.com/gongr2/GameKour/blob/main/Multi-player%20Experience%20Description.md) for our game's multiplayer experience.
 

@@ -6,6 +6,8 @@ using TMPro;
 using System.ComponentModel;
 using Photon.Realtime;
 using System.Linq;
+using UnityEngine.UIElements;
+//using System;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -24,6 +26,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     [SerializeField] GameObject NameUI;
     [SerializeField] TMP_InputField Name;
+    [SerializeField] TMP_InputField RoomNumber;
+    public int RoomIndex = 1;
 
     //[SerializeField] TMP_Text RoomNameText;
 
@@ -75,6 +79,17 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             return;
         }
+        if (string.IsNullOrEmpty(RoomNumber.text))
+        {
+            return;
+        }
+
+        RoomIndex =int.Parse(RoomNumber.text);
+
+        if (RoomIndex < 1 || RoomIndex > 3) { 
+            return;
+        }
+
         PhotonNetwork.CreateRoom(RoomNameInputField.text);
         Debug.Log("Create Room Success");
         MenuManager.Instance.OpenMenu("Loading");
@@ -146,6 +161,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(1);
+        
+        PhotonNetwork.LoadLevel(RoomIndex);
     }
 }

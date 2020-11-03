@@ -41,10 +41,16 @@ public class PlayerManger : MonoBehaviour
             //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), Vector3.zero, Quaternion.identity);
             //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(10, 0, 10), Quaternion.identity);
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), ChaserPosition, Quaternion.identity);
+            //RandomValueGenerator();
+            //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), new Vector3(Xpos, LeftBound.y, Zpos), Quaternion.identity);
+            
         }
         else
         {
+            RandomValueGenerator();
             PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(Xpos, LeftBound.y, Zpos), Quaternion.identity);
+            Zpos = 0;
+            Zpos = 0;
         }
     }
 

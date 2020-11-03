@@ -14,7 +14,7 @@ Please check [Multi-player Experience Description](https://github.com/jians10/Pa
    if it is not a 'Loading' scene, select Project file -> Assets -> Scenes -> double click MenuScene.
    
 1. Click play button in Unity. Then after a while it should start with 3 options: Find Room, Create Room, and Quit Game.
-   Click on Create room and enter a name ->click create room. 
+   **Click on "Create Room" + Specify "Room Index"**(see details below) and enter a name ->click create room. 
    
 1. After loading, there will be a room waiting scene with players in the room. Just click start if you are single player. At this
    Moment, someone else might join you by clicking find room and select your room on his end. After joining, you can start game.
@@ -23,7 +23,10 @@ Please check [Multi-player Experience Description](https://github.com/jians10/Pa
 
 1. The map implementation is still in progress
 
-**IMPORTANT NOTE:** Game mode selection is being developed right now. So for now, to change game mode, click scripts -> launcher.cs -> find a method called StartGame() at the end -> Change the number in PhotonNetwork.loadLevel() -> PhotonNetwork.loadLevel(1) is the default game scene, PhotonNetwork.loadLevel(2) is the hide and seek mode.
+## Room Index
+Index 1: GameScene (This is our test scene so nothing fun to play around)
+Index 2: EnvironmentScene (This is the Speed Contest Mode)
+Index 3: Hide & Seek (This is the Hide & Seek Mode)
 
 ## Role Distribution:
 Leo: Map Design + Map Implementation + Documentation

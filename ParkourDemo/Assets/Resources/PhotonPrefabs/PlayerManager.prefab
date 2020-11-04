@@ -69,3 +69,6 @@ MonoBehaviour:
   LeftBound: {x: 0, y: 0, z: 0}
   RightBound: {x: 0, y: 0, z: 0}
   ChaserPosition: {x: 0, y: 0, z: 0}
+  RoomIndex: 0
+  PlayerIconLocal: {fileID: 659603120674548586, guid: 00f56df975b99504684ab8a8b8c9d640,
+    type: 3}

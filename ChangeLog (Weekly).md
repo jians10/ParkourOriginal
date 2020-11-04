@@ -31,6 +31,7 @@
 * Enabled "Range Infection" ability.
 * Solved synchronization issues related to infection action.
 * Enabled climbing over small-height cubes
+* MiniMap in Hide and Seek Map
 
 ## Up-To-Date Control Guide:
 * **WASD** for movement.

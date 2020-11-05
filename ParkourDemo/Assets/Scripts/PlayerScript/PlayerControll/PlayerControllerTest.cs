@@ -46,7 +46,8 @@ namespace Parkour
             Trans,
             Lifting,
             Climbing,
-            Vaulting
+            Vaulting,
+            Paralyze
         }
         //This will be useful in future
         public enum AirState
@@ -193,7 +194,7 @@ namespace Parkour
             if (Rigidbody == null)
                 return;
 
-            Rigidbody.useGravity = State == PlayerState.Hanging;
+            //Rigidbody.useGravity = State != PlayerState.Hanging;
             switch (State)
             {
 

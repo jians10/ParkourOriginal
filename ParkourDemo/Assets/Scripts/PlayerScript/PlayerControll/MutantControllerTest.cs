@@ -13,6 +13,7 @@ namespace Parkour
 
     public class MutantControllerTest : PlayerControllerTest
     {
+        
 
         public bool CheckingTarget=false;
         public bool Attack=false;
@@ -20,10 +21,12 @@ namespace Parkour
         public float SkillCoolDownLeft = 10f;
         public bool SkillReady = false;
         public GameObject toxin;
-
+        public bool Paralyze;
+       
 
         private new void Awake()
         {
+            Paralyze = false;
             toxin.SetActive(false);
             base.Awake();
         }
@@ -34,14 +37,15 @@ namespace Parkour
             base.Update();
 
             CharacterAnimator.SetBool("Attack", Attack);
+            CharacterAnimator.SetBool("Paralyze", Paralyze);
         }
         // Start is called before the first frame update
         protected new void FixedUpdate()
         {
+            
             if (Rigidbody == null)
                 return;
-
-            Rigidbody.useGravity = State == PlayerState.Hanging;
+           // Rigidbody.useGravity = State == PlayerState.Hanging;
             SpecialSkillCounter();
             switch (State)
             {
@@ -63,6 +67,7 @@ namespace Parkour
                     break;
 
                 case PlayerState.NORMAL:
+                    Debug.Log(State);
                     Look();
                     Dash();
                     Grounded = Physics.OverlapBox(transform.position, new Vector3(0.2f, 0.2f, 0.2f)).Length > 1;
@@ -112,11 +117,16 @@ namespace Parkour
                     cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
                     break;
 
+                case PlayerState.Paralyze:
+                    //KnockedDown();
+                    Grounded = Physics.OverlapBox(transform.position, new Vector3(0.2f, 0.2f, 0.2f)).Length > 1;
+                    break;
+
             }
 
 
-            Rigidbody.useGravity = State == PlayerState.NORMAL || State == PlayerState.Sonic || State == PlayerState.Lifting;
-            MainCollider.enabled = State == PlayerState.NORMAL || State == PlayerState.Dash || State == PlayerState.Sonic || State == PlayerState.Lifting;
+            Rigidbody.useGravity = State == PlayerState.NORMAL || State == PlayerState.Sonic || State == PlayerState.Lifting||State ==PlayerState.Paralyze;
+            MainCollider.enabled = State == PlayerState.NORMAL || State == PlayerState.Dash || State == PlayerState.Sonic || State == PlayerState.Lifting||State==PlayerState.Paralyze;
         }
 
 
@@ -231,6 +241,41 @@ namespace Parkour
             }
 
         }
+
+        public void KnockedDown() {
+            // This are all parameter related to Climbing
+            AbleToClimb = false;
+            Climb = false;
+            Ladder=null;
+            ClimbOffset=Vector3.zero;
+           //All of this is related to Vaulting
+            AbleToVault=false;
+            Vault=false;
+            VaultObject=null;
+            VaultOffset=Vector3.zero; ;
+            AbletoGrab=false;
+            UpTheWall=false;
+            Grab = false;
+            Edge=null;
+            GrabOffset=Vector3.zero;
+
+            CurrentSpeed = 0;
+            Rigidbody.velocity = Vector3.zero;
+        }
+        public void RecoverOne()
+        {
+            Paralyze = false;
+        }
+        public void RecoverTwo()
+        {
+            State = PlayerState.NORMAL;
+            CurrentSpeed = 0;
+            if (Rigidbody != null)
+            {
+                Rigidbody.velocity = Vector3.zero;
+            }
+        }
+
 
 
     }

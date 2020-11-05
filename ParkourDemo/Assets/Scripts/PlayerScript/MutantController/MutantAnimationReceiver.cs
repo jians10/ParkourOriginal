@@ -21,6 +21,15 @@ namespace Parkour
             MutantController.EndCheckingTarget();
         }
 
+        void RecoverOne()
+        {
+            MutantController.RecoverOne();
+        }
+        void RecoverTwo()
+        {
+            MutantController.RecoverTwo();
+        }
     }
+
 
 }

@@ -526,7 +526,7 @@ namespace Parkour
                 {
                     //Item.transform.parent = null;
                     int ItemID = Item.GetComponent<PhotonView>().ViewID;
-                    PV.RPC("ThrowObjectAway", RpcTarget.All, new object[] { ItemID, PushForce, transform.forward + transform.up });
+                    PV.RPC("ThrowObjectAway", RpcTarget.All, new object[] { ItemID, PushForce, transform.forward });
                     PushForce = MinForce;
                     Charged = false;
                     PickCon.Player = null;

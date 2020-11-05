@@ -21,7 +21,10 @@ public class Sonic : PickUp
         Debug.Log("PicKuP");
 
         PlayerControllerTest player = PhotonView.Find(PlayerID).gameObject.GetComponent<PlayerControllerTest>();
-        player.State = PlayerControllerTest.PlayerState.Sonic;
+        if (player.State != PlayerControllerTest.PlayerState.Lifting)
+        {
+            player.State = PlayerControllerTest.PlayerState.Sonic;
+        }
         Destroy(gameObject);
     
     

@@ -45,7 +45,10 @@ namespace Parkour
             
             if (Rigidbody == null)
                 return;
-           // Rigidbody.useGravity = State == PlayerState.Hanging;
+            if (Controller == null)
+                return;
+
+            // Rigidbody.useGravity = State == PlayerState.Hanging;
             SpecialSkillCounter();
             switch (State)
             {

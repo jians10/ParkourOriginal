@@ -11,13 +11,4 @@ public class ExplosionEffect : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-    
-
-
 }

@@ -17,6 +17,7 @@ namespace Parkour
         public GameObject orientation;
         public ParticleSystem SpeedLine;
         public ParticleSystem SprintEffect;
+        //public Rigidbody rb;
 
         private void Awake()
         {
@@ -30,7 +31,7 @@ namespace Parkour
                     Destroy(GetComponent<InputReceive>());
                 }
                 Destroy(GetComponentInChildren<Camera>().gameObject);
-                Destroy(GetComponentInChildren<Rigidbody>());
+                Destroy(GetComponent<Rigidbody>());
                 Destroy(orientation.gameObject);
                 Destroy(SpeedLine);
                 Destroy(SprintEffect);

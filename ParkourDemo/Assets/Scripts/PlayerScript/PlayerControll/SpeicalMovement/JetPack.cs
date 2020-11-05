@@ -20,6 +20,7 @@ namespace Parkour
         bool canJet;
         private Rigidbody rb;
         private PlayerControllerTest player;
+        private InputReceive Controller;
         bool Grounded;
         public bool JetActivate;
         public GameObject JetPackMesh;
@@ -30,6 +31,7 @@ namespace Parkour
 
             rb = GetComponent<Rigidbody>();
             player = GetComponent<PlayerControllerTest>();
+            Controller = GetComponent<InputReceive>();
         }
 
 
@@ -51,6 +53,9 @@ namespace Parkour
             JetPackMesh.SetActive(true);
             if (rb == null)
             {
+                return;
+            }
+            if (Controller == null) {
                 return;
             }
             canJet = player.Input.Jet;

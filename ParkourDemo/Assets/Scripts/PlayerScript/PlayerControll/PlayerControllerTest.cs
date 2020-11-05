@@ -5,6 +5,7 @@ using Photon.Pun;
 //using Photon.Pun.UtilityScripts;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 //using UnityEngine.UIElements;
 
 namespace Parkour
@@ -62,7 +63,7 @@ namespace Parkour
 
         [SerializeField]protected GameObject cameraHolder;
         [SerializeField]protected float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
-
+        public InputReceive Controller;
         protected float verticalLookRotation;
         public float MaxSpeed = 7f;
         public const float SpeedValue = 7f;
@@ -143,7 +144,8 @@ namespace Parkour
 
         protected void Awake()
         {
-           // wallrun = GetComponent<WallRunMovement>();
+            // wallrun = GetComponent<WallRunMovement>();
+            Controller=GetComponent<InputReceive>();
             Rigidbody = GetComponent<Rigidbody>();
             CharacterAnimator = GetComponentInChildren<Animator>();
             MainCollider = GetComponent<CapsuleCollider>();
@@ -155,7 +157,7 @@ namespace Parkour
             // if (photonView.IsMine)
             //     return
             //Debug.Log(Input.Jet);
-            if (Rigidbody == null)
+            if (Controller == null)
                 return;
             SpeedLine();
             FlashLine();
@@ -188,12 +190,10 @@ namespace Parkour
 
         protected void FixedUpdate()
         {
-
-
-
+            if (Controller == null)
+                return;
             if (Rigidbody == null)
                 return;
-
             //Rigidbody.useGravity = State != PlayerState.Hanging;
             switch (State)
             {
@@ -764,9 +764,19 @@ namespace Parkour
         {
             if (Edge != null)
             {
-                transform.position = Edge.transform.position + GrabOffset + transform.forward * 0.4f + transform.up * 2.3f;
+               Vector3 TargetPosition = Edge.transform.position + GrabOffset + transform.forward * 0.4f + transform.up * 2.3f;
+                PV.RPC("UpEdge", RpcTarget.AllBuffered, new object[] { TargetPosition });
             }
         }
+
+
+        [PunRPC]
+        protected void UpEdge(Vector3 TargetPosition)
+        {
+            transform.position = TargetPosition;
+
+        }
+
 
         public void FinishPullUp()
         {

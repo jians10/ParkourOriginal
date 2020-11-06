@@ -14,8 +14,15 @@ namespace Parkour
         public Rigidbody _rb;
         Vector3 _networkPosition;
         Quaternion _networkRotation;
+        
+
+        
+        
         private void Awake()
         {
+            PhotonNetwork.SendRate = 25;
+            PhotonNetwork.SerializationRate = 15;
+
             Player = GetComponent<PlayerControllerTest>();
 
             //destroy the controller if the player is not controlled by me
@@ -56,8 +63,15 @@ namespace Parkour
         }
         public void Update()
         {
+            Debug.Log("Send Rate is "+PhotonNetwork.SendRate);
+            //Default 20
+            Debug.Log("Send RateOS is " +PhotonNetwork.SerializationRate);
+
             if (!photonView.IsMine)
             {
+                
+
+
                 var LagDistance = _networkPosition - transform.position;
 
 
@@ -69,7 +83,7 @@ namespace Parkour
                 else 
                 {
                     
-                    transform.position = Vector3.MoveTowards(_rb.position, _networkPosition, Time.fixedDeltaTime*2f);
+                    transform.position = Vector3.MoveTowards(_rb.position, _networkPosition, Time.fixedDeltaTime*3f);
                     transform.rotation = Quaternion.RotateTowards(_rb.rotation, _networkRotation, Time.fixedDeltaTime * 100.0f);
                 }
             }

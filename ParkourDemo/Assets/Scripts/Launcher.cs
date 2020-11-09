@@ -89,8 +89,9 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (RoomIndex < 1 || RoomIndex > 3) { 
             return;
         }
+        RoomOptions options = new RoomOptions { MaxPlayers = 4 };
 
-        PhotonNetwork.CreateRoom(RoomNameInputField.text);
+        PhotonNetwork.CreateRoom(RoomNameInputField.text,options,default);
         Debug.Log("Create Room Success");
         MenuManager.Instance.OpenMenu("Loading");
 
@@ -161,7 +162,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        
+        //PhotonNetwork.currentRoom.isOpen=false;
         PhotonNetwork.LoadLevel(RoomIndex);
     }
 }

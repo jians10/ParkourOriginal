@@ -17,7 +17,7 @@ public class PlayerManger : MonoBehaviour
     private float Zpos;
     private float Xpos;
     Transform MapImage=null;
-    public GameObject PlayerIconLocal = null;
+    //public GameObject PlayerIconLocal = null;
 
     void Awake()
     {

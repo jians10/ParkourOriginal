@@ -43,10 +43,14 @@ public class Mutant : MonoBehaviour
             controller.State = PlayerControllerTest.PlayerState.Mutant;
             int mutantID = PV.ViewID;
             GameObject Mutant= PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), transform.position, transform.rotation);
-            int playerID = Mutant.GetComponent<PhotonView>().ViewID;
+
             GameObject playericon = controller.PlayerIcon;
-            int viewID = playericon.GetComponent<PhotonView>().ViewID;
-            PV.RPC("SwitchParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
+                if (playericon != null)
+                {
+                    int playerID = Mutant.GetComponent<PhotonView>().ViewID;
+                    int viewID = playericon.GetComponent<PhotonView>().ViewID;
+                    PV.RPC("SwitchParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
+                }
             PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });  
         }
 

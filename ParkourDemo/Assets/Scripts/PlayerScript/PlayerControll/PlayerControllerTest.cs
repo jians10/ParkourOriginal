@@ -137,7 +137,7 @@ namespace Parkour
         public bool Vault;
         protected GameObject VaultObject;
         protected Vector3 VaultOffset;
-        public GameObject PlayerIcon;
+        public GameObject PlayerIcon=null;
 
 
 
@@ -158,7 +158,10 @@ namespace Parkour
             if (Controller == null)
                 return;
             if (photonView.IsMine) {
-                PlayerIcon.GetComponent<PlayerIcon>().ChangeColor();
+                if (PlayerIcon != null)
+                {
+                    PlayerIcon.GetComponent<PlayerIcon>().ChangeColor();
+                }
             }
            
         }

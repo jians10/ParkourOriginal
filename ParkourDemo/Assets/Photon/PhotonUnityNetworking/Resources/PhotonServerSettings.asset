@@ -56,6 +56,8 @@ MonoBehaviour:
   - SetIconParent
   - OnHit
   - UpEdge
+  - SetPlayerParent
+  - SwitchParent
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

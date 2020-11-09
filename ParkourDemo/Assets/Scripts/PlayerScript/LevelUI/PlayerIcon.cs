@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class PlayerIcon : MonoBehaviour
 {
@@ -54,6 +55,11 @@ public class PlayerIcon : MonoBehaviour
     public void setPlayer(GameObject target){
 
         player = target;
+
+    }
+    public void ChangeColor() {
+
+         GetComponent<Image>().color = Color.red;
 
     }
 }

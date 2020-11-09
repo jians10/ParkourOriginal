@@ -5,6 +5,7 @@ using Photon.Pun;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using Parkour;
 
 public class PlayerManger : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class PlayerManger : MonoBehaviour
                 //playericon.GetComponent<PlayerIcon>().setPlayer(player);
                 int viewID = playericon.GetComponent<PhotonView>().ViewID;
                 PV.RPC("SetIconParent", RpcTarget.AllBuffered, new object[] {viewID, playerID });
-                Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
+                //Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
             }
             //RandomValueGenerator();
            
@@ -70,11 +71,11 @@ public class PlayerManger : MonoBehaviour
             {
                 int playerID = player.GetComponent<PhotonView>().ViewID;
                 GameObject playericon = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerIcon"), MapImage.transform.position, Quaternion.identity);
-                playericon.GetComponent<PlayerIcon>().setPlayer(player);
+                //playericon.GetComponent<PlayerIcon>().setPlayer(player);
                 //playericon.transform.SetParent(MapImage);
                 int viewID = playericon.GetComponent<PhotonView>().ViewID;
                 PV.RPC("SetIconParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
-                Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
+                //Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
 
             }
             Zpos = 0;
@@ -99,7 +100,8 @@ public class PlayerManger : MonoBehaviour
     void SetIconParent(int viewID, int playerID) {
         GameObject icon = PhotonView.Find(viewID).gameObject;
         GameObject player= PhotonView.Find(playerID).gameObject;
-        icon.GetComponent<PlayerIcon>().setPlayer(player);
+        //icon.GetComponent<PlayerIcon>().setPlayer(player);
+        player.GetComponent<PlayerControllerTest>().SetIcon(icon);
         icon.transform.SetParent(MapImage);
     }
 }

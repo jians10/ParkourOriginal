@@ -35,7 +35,6 @@ namespace Parkour
         private new void Update()
         {
             base.Update();
-
             CharacterAnimator.SetBool("Attack", Attack);
             CharacterAnimator.SetBool("Paralyze", Paralyze);
         }

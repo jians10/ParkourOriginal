@@ -6,6 +6,7 @@ using Photon.Pun;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+//using UnityEngine.UI;
 //using UnityEngine.UIElements;
 
 namespace Parkour
@@ -136,7 +137,7 @@ namespace Parkour
         public bool Vault;
         protected GameObject VaultObject;
         protected Vector3 VaultOffset;
-
+        public GameObject PlayerIcon;
 
 
 
@@ -152,13 +153,29 @@ namespace Parkour
             PV = GetComponent<PhotonView>();
         }
 
+        protected void Start()
+        {
+            if (Controller == null)
+                return;
+            if (photonView.IsMine) {
+                PlayerIcon.GetComponent<PlayerIcon>().ChangeColor();
+            }
+           
+        }
+
         protected void Update()
         {
             // if (photonView.IsMine)
             //     return
             //Debug.Log(Input.Jet);
-            if (Controller == null)
+            if (Controller == null) {
+                moveDirection = Rigidbody.velocity;
+                Rotation = Vector3.SignedAngle(transform.forward, moveDirection, Vector3.up);
+                CharacterAnimator.SetFloat("Rotation", Rotation);
+                CharacterAnimator.SetFloat("Speed", CurrentSpeed);
                 return;
+            }
+                
             SpeedLine();
             FlashLine();
             // do not use this any more 
@@ -195,9 +212,10 @@ namespace Parkour
             if (Rigidbody == null)
                 return;
             //Rigidbody.useGravity = State != PlayerState.Hanging;
+            
             switch (State)
             {
-
+               
                 case PlayerState.Sonic:
                     SonicCounter();
                     Look();
@@ -923,6 +941,10 @@ namespace Parkour
 
         }
 
+        public void SetIcon(GameObject Icon) {
+            PlayerIcon = Icon;
+            Icon.GetComponent<PlayerIcon>().setPlayer(this.gameObject);
+        }
 
     }
 }

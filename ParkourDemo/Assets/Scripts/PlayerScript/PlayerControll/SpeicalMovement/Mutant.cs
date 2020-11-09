@@ -42,37 +42,39 @@ public class Mutant : MonoBehaviour
 
             controller.State = PlayerControllerTest.PlayerState.Mutant;
             int mutantID = PV.ViewID;
-            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), transform.position, transform.rotation);
+            GameObject Mutant= PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), transform.position, transform.rotation);
+            int playerID = Mutant.GetComponent<PhotonView>().ViewID;
+            GameObject playericon = controller.PlayerIcon;
+            int viewID = playericon.GetComponent<PhotonView>().ViewID;
+            PV.RPC("SwitchParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
             PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });  
         }
 
     }
 
 
-    public void BeginMutant() {
-        controller.State = PlayerControllerTest.PlayerState.Mutant;
-        int mutantID = PV.ViewID;
-        GameObject mutant=PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), transform.position, transform.rotation);
-        PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });
-    }
+    //public void BeginMutant() {
+    //    controller.State = PlayerControllerTest.PlayerState.Mutant;
+    //    int mutantID = PV.ViewID;
+    //    GameObject mutant=PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), transform.position, transform.rotation);
+    //    PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });
+    //}
 
 
     [PunRPC]
     void BeMutant(int mutantID) {
-            //GameObject mutantplayer= PhotonView.Find(mutantID).gameObject;
-            //if (mutantplayer != null&& mutantplayer.tag == "Player") {
-            //    Destroy(mutantplayer);
-            //}
-            Destroy(gameObject);
-
+         Destroy(gameObject);
     }
 
+    [PunRPC]
+    void SwitchParent(int viewID, int playerID)
+    {
+         GameObject icon = PhotonView.Find(viewID).gameObject;
+         GameObject player = PhotonView.Find(playerID).gameObject;
+            //icon.GetComponent<PlayerIcon>().setPlayer(player);
+         player.GetComponent<PlayerControllerTest>().SetIcon(icon);
+         
+    }
 
-     //private void OnCollisionEnter(Collision collision){
-     //   if (collision.gameObject.tag == "Mutant") {
-     //      mutant = true; 
-     //   }    
-     //}
-        
     }
 }

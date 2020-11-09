@@ -12,6 +12,7 @@ namespace Parkour
         public ParticleSystem SpeedLine;
         public ParticleSystem SprintEffect;
         public Rigidbody _rb;
+        public Vector3 velocity; 
         Vector3 _networkPosition;
         Quaternion _networkRotation;
         
@@ -69,21 +70,18 @@ namespace Parkour
 
             if (!photonView.IsMine)
             {
-                
-
 
                 var LagDistance = _networkPosition - transform.position;
 
-
-                if (LagDistance.magnitude > 5f)
+                if (LagDistance.magnitude > 3* _rb.velocity.magnitude &&LagDistance.magnitude> 3f)
                 {
                     transform.position = _networkPosition;
                     LagDistance = Vector3.zero;
                 }
+
                 else 
                 {
-                    
-                    transform.position = Vector3.MoveTowards(_rb.position, _networkPosition, Time.fixedDeltaTime*3f);
+                    transform.position = Vector3.MoveTowards(_rb.position, _networkPosition, Time.fixedDeltaTime);
                     transform.rotation = Quaternion.RotateTowards(_rb.rotation, _networkRotation, Time.fixedDeltaTime * 100.0f);
                 }
             }

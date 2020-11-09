@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
+    public float ReadyNumber=0;
     public GameObject readyButton;
     public void ReadyToPlay() {
         readyButton.SetActive(false);
@@ -29,7 +31,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         base.OnLeftRoom();
         PhotonNetwork.LoadLevel(0);
-
     }
 
 

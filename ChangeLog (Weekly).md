@@ -32,6 +32,7 @@
 * Solved synchronization issues related to infection action.
 * Enabled climbing over small-height cubes
 * MiniMap in Hide and Seek Map
+* Upgraded inter-user connection to enable more fluent multi-player gaming.
 
 ## Up-To-Date Control Guide:
 * **WASD** for movement.

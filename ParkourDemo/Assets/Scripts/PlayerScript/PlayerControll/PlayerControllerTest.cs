@@ -932,7 +932,6 @@ namespace Parkour
             em.enabled = FullSpeed && FaceForward;
 
         }
-
         protected void FlashLine()
         {
 
@@ -943,7 +942,6 @@ namespace Parkour
             em2.enabled = FullSpeed && FaceForward && State == PlayerState.Sonic;
 
         }
-
         public void SetIcon(GameObject Icon) {
             PlayerIcon = Icon;
             Icon.GetComponent<PlayerIcon>().setPlayer(this.gameObject);

@@ -58,6 +58,8 @@ MonoBehaviour:
   - UpEdge
   - SetPlayerParent
   - SwitchParent
+  - IncreaseMutantCountPun
+  - StartTimer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

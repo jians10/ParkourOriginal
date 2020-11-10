@@ -12,7 +12,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     // provide an singleton pattern for this class
     public static RoomManager Instance;
 
-    void Awake()
+    protected void Awake()
     {
         if (Instance) //check if another roommanger exist
         {
@@ -38,16 +38,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.buildIndex == 1 || scene.buildIndex == 2||scene.buildIndex==3) // We're in the game scene

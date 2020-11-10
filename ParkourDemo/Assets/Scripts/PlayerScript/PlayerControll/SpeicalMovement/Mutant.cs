@@ -6,22 +6,22 @@ using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.IO;
-
+using UnityEngine.SceneManagement;
 
 namespace Parkour { 
 public class Mutant : MonoBehaviour
 {
     // Start is called before the first frame update
 
-
+    public GameManager manager= null;
     public bool mutant;
     PhotonView PV;
     private PlayerControllerTest controller;
     private Rigidbody rb;
-
+    private float RoomIndex = 0;
     void Awake()
     {
-      
+        RoomIndex = SceneManager.GetActiveScene().buildIndex;
         PV = GetComponent<PhotonView>();
         controller = GetComponent<PlayerControllerTest>();
         rb = GetComponent<Rigidbody>();
@@ -45,13 +45,16 @@ public class Mutant : MonoBehaviour
             GameObject Mutant= PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), transform.position, transform.rotation);
 
             GameObject playericon = controller.PlayerIcon;
-                if (playericon != null)
-                {
-                    int playerID = Mutant.GetComponent<PhotonView>().ViewID;
-                    int viewID = playericon.GetComponent<PhotonView>().ViewID;
-                    PV.RPC("SwitchParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
-                }
-            PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });  
+            if (playericon != null)
+            {
+                int playerID = Mutant.GetComponent<PhotonView>().ViewID;
+                int viewID = playericon.GetComponent<PhotonView>().ViewID;
+                PV.RPC("SwitchParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
+            }
+            PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });
+            if (RoomIndex == 2) {
+                MazeGameManager.instance.IncreaseMutantCount();
+            }
         }
 
     }
@@ -77,7 +80,6 @@ public class Mutant : MonoBehaviour
          GameObject player = PhotonView.Find(playerID).gameObject;
             //icon.GetComponent<PlayerIcon>().setPlayer(player);
          player.GetComponent<PlayerControllerTest>().SetIcon(icon);
-         
     }
 
     }

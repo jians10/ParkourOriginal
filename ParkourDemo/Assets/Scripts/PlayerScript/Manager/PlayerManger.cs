@@ -57,6 +57,7 @@ public class PlayerManger : MonoBehaviour
                 //playericon.GetComponent<PlayerIcon>().setPlayer(player);
                 int viewID = playericon.GetComponent<PhotonView>().ViewID;
                 PV.RPC("SetIconParent", RpcTarget.AllBuffered, new object[] {viewID, playerID });
+                MazeGameManager.instance.IncreaseMutantCount();
                 //Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
             }
             //RandomValueGenerator();

@@ -130,6 +130,16 @@ public class Launcher : MonoBehaviourPunCallbacks
         MenuManager.Instance.OpenMenu("Error");
     }
 
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        //base.OnJoinRoomFailed(returnCode, message);
+        errorText.text = "Join Room Failed: " + message+ "This game has already begun";
+        Debug.LogError("Join Room Failed: " + message);
+        MenuManager.Instance.OpenMenu("Error");
+    }
+
+
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
@@ -162,7 +172,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        //PhotonNetwork.currentRoom.isOpen=false;
+        PhotonNetwork.CurrentRoom.IsOpen = false;
         PhotonNetwork.LoadLevel(RoomIndex);
     }
 }

@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     public float ReadyNumber=0;
     public GameObject readyButton;
+    protected PhotonView PV;
+
+    public void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+    }
+
     public void ReadyToPlay() {
         readyButton.SetActive(false);
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
@@ -32,6 +39,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         PhotonNetwork.LoadLevel(0);
     }
+   
+
 
 
 }

@@ -121,6 +121,9 @@ namespace Parkour
                 case PlayerState.Paralyze:
                     //KnockedDown();
                     Grounded = Physics.OverlapBox(transform.position, new Vector3(0.2f, 0.2f, 0.2f)).Length > 1;
+                    cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 3f, -1), 5f * Time.deltaTime);
+                    Vector3 newDirection = Vector3.RotateTowards(cameraHolder.transform.forward, transform.position-cameraHolder.transform.position, Time.deltaTime, 0.0f);
+                    cameraHolder.transform.rotation = Quaternion.LookRotation(newDirection);
                     break;
 
             }

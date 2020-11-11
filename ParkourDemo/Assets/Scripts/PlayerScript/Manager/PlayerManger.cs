@@ -23,7 +23,9 @@ public class PlayerManger : MonoBehaviour
     {
         PV = GetComponent<PhotonView>();
         LeftBound = GameObject.Find("LBound").transform.position;
+        Debug.Log(LeftBound);
         RightBound = GameObject.Find("RBound").transform.position;
+        Debug.Log(RightBound);
         ChaserPosition = GameObject.Find("MPosition").transform.position;
         RoomIndex = SceneManager.GetActiveScene().buildIndex;
         if (RoomIndex == 2) {
@@ -77,12 +79,12 @@ public class PlayerManger : MonoBehaviour
                 //Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
 
                 Zpos = 0;
-                Zpos = 0;
+                Xpos = 0;
             }
         }
         else {
             RandomValueGenerator();
-            GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(Xpos, LeftBound.y, Zpos), Quaternion.identity);
+            GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"),RightBound, Quaternion.identity);
         }
        // PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TestExample"), ChaserPosition, Quaternion.identity);
     }

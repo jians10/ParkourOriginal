@@ -78,7 +78,8 @@ namespace Parkour
         protected CapsuleCollider MainCollider;
         protected Animator CharacterAnimator;
         // neo in this project
-        Vector3 moveDirection;
+        public Vector3 moveDirection;
+        public float moveDirectionUp;
         public float Rotation;
         public float CurrentSpeed;
         //protected WallRunMovement wallrun;
@@ -172,7 +173,7 @@ namespace Parkour
             //     return
             //Debug.Log(Input.Jet);
             if (Controller == null) {
-                moveDirection = Rigidbody.velocity;
+                CurrentSpeed = Rigidbody.velocity.magnitude;
                 Rotation = Vector3.SignedAngle(transform.forward, moveDirection, Vector3.up);
                 CharacterAnimator.SetFloat("Rotation", Rotation);
                 CharacterAnimator.SetFloat("Speed", CurrentSpeed);
@@ -183,9 +184,10 @@ namespace Parkour
             FlashLine();
             // do not use this any more 
             CharacterAnimator.SetBool("Grounded", Grounded);
-            var localVelocity = Quaternion.Inverse(transform.rotation) * (Rigidbody.velocity / MaxSpeed);
+            //var localVelocity = Quaternion.Inverse(transform.rotation) * (Rigidbody.velocity / MaxSpeed);
             AbleToSlide = (State == PlayerState.NORMAL || State == PlayerState.Sonic) && Grounded && CurrentSpeed > 6;
             moveDirection = Rigidbody.velocity;
+            moveDirectionUp = Rigidbody.velocity.y;
             Rotation = Vector3.SignedAngle(transform.forward, moveDirection, Vector3.up);
             CharacterAnimator.SetFloat("Rotation", Rotation);
             CharacterAnimator.SetFloat("Speed", CurrentSpeed);
@@ -202,6 +204,8 @@ namespace Parkour
             CharacterAnimator.SetBool("Climb", Climb);
             CharacterAnimator.SetBool("ClimbQuit", Input.Jump);
             CharacterAnimator.SetBool("Vaulting", Vault);
+            CharacterAnimator.SetFloat("MoveDirectionUp", moveDirectionUp);
+            
         }
 
 
@@ -285,7 +289,7 @@ namespace Parkour
 
 
             Rigidbody.useGravity = State == PlayerState.NORMAL || State == PlayerState.Sonic || State == PlayerState.Lifting;
-            MainCollider.enabled = State == PlayerState.NORMAL || State == PlayerState.Dash || State == PlayerState.Sonic || State == PlayerState.Lifting;
+            MainCollider.enabled = State == PlayerState.NORMAL || State == PlayerState.Dash || State == PlayerState.Sonic || State == PlayerState.Lifting||State == PlayerState.Vaulting;
             //Rigidbody.MovePosition(Rigidbody.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
         }
 
@@ -625,7 +629,7 @@ namespace Parkour
             {
                 //transform.position =Vector3.Lerp(transform.position,VaultOffset + VaultObject.transform.position+VaultObject.transform.up*VaultObject.transform.localScale.y,Time.deltaTime);
                 transform.position = VaultOffset + VaultObject.transform.position + VaultObject.transform.up * VaultObject.transform.localScale.y;
-                cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 1.7f, -2), 5f * Time.deltaTime);
+                cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 1.7f, -1f), 5f);
             }
         }
 
@@ -636,7 +640,7 @@ namespace Parkour
             State = PlayerState.NORMAL;
             Vault = false;
             CurrentSpeed = SpeedValue;
-            cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 1.7f, 0), 5f * Time.deltaTime);
+            cameraHolder.transform.localPosition = Vector3.Lerp(cameraHolder.transform.localPosition, new Vector3(0, 1.7f, 0), 5f*Time.deltaTime);
 
         }
 

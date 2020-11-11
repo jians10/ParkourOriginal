@@ -130,7 +130,7 @@ namespace Parkour
 
 
             Rigidbody.useGravity = State == PlayerState.NORMAL || State == PlayerState.Sonic || State == PlayerState.Lifting||State ==PlayerState.Paralyze;
-            MainCollider.enabled = State == PlayerState.NORMAL || State == PlayerState.Dash || State == PlayerState.Sonic || State == PlayerState.Lifting||State==PlayerState.Paralyze;
+            MainCollider.enabled = State == PlayerState.NORMAL || State == PlayerState.Dash || State == PlayerState.Sonic || State == PlayerState.Lifting||State==PlayerState.Paralyze || State == PlayerState.Vaulting; ;
         }
 
 

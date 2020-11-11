@@ -230,6 +230,8 @@ MonoBehaviour:
   State: 0
   air: 2
   GroundDetectRadius: 0.3
+  moveDirection: {x: 0, y: 0, z: 0}
+  moveDirectionUp: 0
   Rotation: 0
   CurrentSpeed: 0
   Grounded: 1
@@ -557,6 +559,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 2
     Name: Paralyze
+  - Type: 1
+    SynchronizeType: 1
+    Name: MoveDirectionUp
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

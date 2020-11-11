@@ -45,31 +45,29 @@ public class PlayerManger : MonoBehaviour
     {
         Debug.Log("Instantiate Player Controller");
 
-        if (PhotonNetwork.IsMasterClient)
+        if (RoomIndex == 2)
         {
-            //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), Vector3.zero, Quaternion.identity);
-            //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(10, 0, 10), Quaternion.identity);
-            GameObject player=PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), ChaserPosition, Quaternion.identity);
-           
-            if (RoomIndex == 2) {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), Vector3.zero, Quaternion.identity);
+                //PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(10, 0, 10), Quaternion.identity);
+
+                GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "MutantPlayer"), ChaserPosition, Quaternion.identity);
                 int playerID = player.GetComponent<PhotonView>().ViewID;
                 GameObject playericon = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerIcon"), MapImage.transform.position, Quaternion.identity);
                 //playericon.GetComponent<PlayerIcon>().setPlayer(player);
                 int viewID = playericon.GetComponent<PhotonView>().ViewID;
-                PV.RPC("SetIconParent", RpcTarget.AllBuffered, new object[] {viewID, playerID });
+                PV.RPC("SetIconParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
                 MazeGameManager.instance.IncreaseMutantCount();
                 //Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
-            }
-            //RandomValueGenerator();
-           
+                //RandomValueGenerator();
 
-        }
-        else
-        {
-            RandomValueGenerator();
-            GameObject player=PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(Xpos, LeftBound.y, Zpos), Quaternion.identity);
-            if (RoomIndex == 2)
+
+            }
+            else
             {
+                RandomValueGenerator();
+                GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(Xpos, LeftBound.y, Zpos), Quaternion.identity);
                 int playerID = player.GetComponent<PhotonView>().ViewID;
                 GameObject playericon = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerIcon"), MapImage.transform.position, Quaternion.identity);
                 //playericon.GetComponent<PlayerIcon>().setPlayer(player);
@@ -78,9 +76,13 @@ public class PlayerManger : MonoBehaviour
                 PV.RPC("SetIconParent", RpcTarget.AllBuffered, new object[] { viewID, playerID });
                 //Instantiate(PlayerIconLocal, MapImage).GetComponent<PlayerIconLocal>().setPlayer(player);
 
+                Zpos = 0;
+                Zpos = 0;
             }
-            Zpos = 0;
-            Zpos = 0;
+        }
+        else {
+            RandomValueGenerator();
+            GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(Xpos, LeftBound.y, Zpos), Quaternion.identity);
         }
        // PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "TestExample"), ChaserPosition, Quaternion.identity);
     }

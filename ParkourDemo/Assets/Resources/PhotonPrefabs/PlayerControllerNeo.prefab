@@ -197,6 +197,7 @@ MonoBehaviour:
   Climb: 0
   AbleToVault: 0
   Vault: 0
+  PlayerIcon: {fileID: 0}
 --- !u!114 &1171291868235298245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d029d8a7f346c8e4eb50e0df71d4d33d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   mutant: 0
 --- !u!114 &5786866064095341847
 MonoBehaviour:

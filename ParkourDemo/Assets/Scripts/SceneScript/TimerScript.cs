@@ -8,9 +8,10 @@ public class TimerScript : MonoBehaviour
     bool startTimer = false;
     double timerIncrementValue;
     double startTime;
-    double timeLeft;
+    public double timeLeft;
     [SerializeField]public float timerValue = 180f;
-    ExitGames.Client.Photon.Hashtable CustomeValue;
+
+    
     public Text Clock;
     private PhotonView PV;
     void Awake()
@@ -18,12 +19,10 @@ public class TimerScript : MonoBehaviour
         PV = GetComponent<PhotonView>();
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-            CustomeValue = new ExitGames.Client.Photon.Hashtable();
+           // CustomeValue = new ExitGames.Client.Photon.Hashtable();
             startTime = PhotonNetwork.Time;
             PV.RPC("StartTimer", RpcTarget.AllBuffered, new object[] { startTime, true });
         }
-       
-
     }
 
     void Update()

@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.IO;
 using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
 namespace Parkour { 
 public class Mutant : MonoBehaviour
@@ -19,6 +20,7 @@ public class Mutant : MonoBehaviour
     private PlayerControllerTest controller;
     private Rigidbody rb;
     private float RoomIndex = 0;
+    public Player attacker = null;
     void Awake()
     {
         RoomIndex = SceneManager.GetActiveScene().buildIndex;
@@ -53,7 +55,13 @@ public class Mutant : MonoBehaviour
             }
             PV.RPC("BeMutant", RpcTarget.All, new object[] { mutantID });
             if (RoomIndex == 2) {
-                MazeGameManager.instance.IncreaseMutantCount();
+
+                if (attacker != null) {
+                    MazeGameManager.instance.IncreaseScore(attacker,40);
+                }
+               MazeGameManager.instance.IncreaseMutantCount();
+               MazeGameManager.instance.ScoreBeMutant(PhotonNetwork.LocalPlayer);
+                    
             }
         }
 

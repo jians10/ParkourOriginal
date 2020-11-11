@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using UnityEngine.UIElements;
-using UnityEngine.PlayerLoop;
+using Photon.Realtime;
 
 namespace Parkour
 {
@@ -146,7 +145,8 @@ namespace Parkour
                     if (Target.gameObject.tag == "Player")
                     {
                         int ID = Target.gameObject.GetComponent<PhotonView>().ViewID;
-                        PV.RPC("MutantTarget", RpcTarget.All, new object[] { ID });
+                        PV.RPC("MutantTarget", RpcTarget.All, new object[] { ID,PhotonNetwork.LocalPlayer });
+                        //MazeGameManager.instance.IncreaseScore(20);
                     }
                 }
             }
@@ -170,21 +170,23 @@ namespace Parkour
                     if (Target.gameObject.tag == "Player")
                     {
                         int ID = Target.gameObject.GetComponent<PhotonView>().ViewID;
-                        PV.RPC("MutantTarget", RpcTarget.All, new object[] { ID });
+                        PV.RPC("MutantTarget", RpcTarget.All, new object[] { ID, PhotonNetwork.LocalPlayer });
+                       // MazeGameManager.instance.IncreaseScore(20);
                     }
                 }
             }
         }
 
         [PunRPC]
-        void MutantTarget(int id)
+        void MutantTarget(int id, Player attacker)
         {
-            PhotonView target = PhotonView.Find(id);
+            PhotonView target = PhotonView.Find(id );
             if (target != null)
             {
                 if (target.gameObject.tag == "Player" && target.GetComponent<Mutant>() != null)
                 {
                     target.GetComponent<Mutant>().mutant = true;
+                    target.GetComponent<Mutant>().attacker = attacker;
                 }
             }
         }

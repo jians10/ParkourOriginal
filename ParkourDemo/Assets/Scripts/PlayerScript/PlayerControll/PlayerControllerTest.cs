@@ -663,10 +663,13 @@ namespace Parkour
             {
                 print("Climbing");
                 Vector3 Direction = Ladder.transform.position - transform.position;
-                Vector3 Offset = Vector3.Project(Direction, Ladder.transform.up);
+                Vector3 Offset1 = Vector3.Project(Direction, Ladder.transform.up);
+                Vector3 Offset2 = Vector3.Project(Direction, Ladder.transform.right);
+
+
                 transform.rotation = Ladder.transform.rotation;
-                this.transform.position = Ladder.transform.position - Offset + Ladder.transform.forward * -0.4f;
-                ClimbOffset = Ladder.transform.position - Offset + Ladder.transform.forward * -0.4f;
+                this.transform.position = Ladder.transform.position - Offset1-Offset2 + Ladder.transform.forward * -0.4f;
+                ClimbOffset = Ladder.transform.position - Offset1-Offset2 + Ladder.transform.forward * -0.4f;
                 Rigidbody.velocity = Vector3.zero;
                 State = PlayerState.Climbing;
 

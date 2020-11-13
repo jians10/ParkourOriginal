@@ -17,9 +17,13 @@ public class TimerScript : MonoBehaviour
     void Awake()
     {
         PV = GetComponent<PhotonView>();
+    }
+
+
+    public void StartCount() {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
-           // CustomeValue = new ExitGames.Client.Photon.Hashtable();
+            // CustomeValue = new ExitGames.Client.Photon.Hashtable();
             startTime = PhotonNetwork.Time;
             PV.RPC("StartTimer", RpcTarget.AllBuffered, new object[] { startTime, true });
         }

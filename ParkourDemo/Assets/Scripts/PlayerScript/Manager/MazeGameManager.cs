@@ -41,6 +41,16 @@ public class MazeGameManager : GameManager
         }
     }
     // Update is called once per frame
+
+    public override void ReadyToPlay() {
+        base.ReadyToPlay();
+        timeCounter.StartCount();
+    }
+
+
+
+
+
     void Update()
     {
         MutantCounter.text = "Mutant__"+MutantPlayerCount;
@@ -58,6 +68,7 @@ public class MazeGameManager : GameManager
         }
        
     }
+
 
     public void IncreaseMutantCount() {
         PV.RPC("IncreaseMutantCountPun", RpcTarget.All, new object[] {  });

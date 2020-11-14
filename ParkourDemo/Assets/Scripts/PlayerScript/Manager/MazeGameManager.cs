@@ -2,7 +2,7 @@
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+//using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MazeGameManager : GameManager
 {
@@ -28,14 +28,16 @@ public class MazeGameManager : GameManager
             //PlayerScoreList.Add(player.NickName, 0);
             if (player.IsMasterClient)
             {
-                Hashtable hash = new Hashtable();
-                hash.Add("score", 0);
-                player.CustomProperties = hash;
+                //Hashtable hash = new Hashtable();
+                //hash.Add("score", 0);
+                //player.CustomProperties = hash;
+                ScoreList.Add(player, 0);
             }
             else {
-                Hashtable hash = new Hashtable();
-                hash.Add("score", 100);
-                player.CustomProperties = hash;
+                //Hashtable hash = new Hashtable();
+                //hash.Add("score", 100);
+                //player.CustomProperties = hash;
+                ScoreList.Add(player, 100);
             }
             Instantiate(roomListItemPrefab, ScoreBoardContent).GetComponent<ScoreBoardItem>().SetUp(player);
         }
@@ -46,9 +48,6 @@ public class MazeGameManager : GameManager
         base.ReadyToPlay();
         timeCounter.StartCount();
     }
-
-
-
 
 
     void Update()
@@ -92,17 +91,6 @@ public class MazeGameManager : GameManager
             QuitGameR.SetActive(true);
         }
     }
-    public void IncreaseScore(Player player,int addAmount)
-    {
-        PV.RPC("Scoreincrement", RpcTarget.All, new object[] {player, addAmount});
-    }
-    [PunRPC]
-    public void Scoreincrement(Player player, int addAmount) {
-        int temp = (int)player.CustomProperties["score"];
-        Hashtable hash = new Hashtable();
-        hash.Add("score", temp + addAmount);
-        player.CustomProperties = hash;
-    }
     public void ScoreBeMutant(Player player)
     {
         PV.RPC("ScoreMutant", RpcTarget.All, new object[] { player });
@@ -111,9 +99,10 @@ public class MazeGameManager : GameManager
     public void ScoreMutant(Player player)
     {
         int addAmount = (int)(100*(timeCounter.timerValue-(timeCounter.timeLeft))/timeCounter.timerValue);
-        int temp = (int)player.CustomProperties["score"];
-        Hashtable hash = new Hashtable();
-        hash.Add("score", addAmount);
-        player.CustomProperties = hash;
+        //int temp = (int)ScoreList[player];
+        //Hashtable hash = new Hashtable();
+        //hash.Add("score", addAmount);
+        ScoreList[player] = addAmount;
+        //player.CustomProperties = hash;
     }
 }

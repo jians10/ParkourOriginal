@@ -954,5 +954,6 @@ namespace Parkour
             Icon.GetComponent<PlayerIcon>().setPlayer(this.gameObject);
         }
 
+
     }
 }

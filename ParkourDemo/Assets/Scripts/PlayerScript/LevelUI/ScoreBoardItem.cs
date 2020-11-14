@@ -8,23 +8,25 @@ public class ScoreBoardItem : MonoBehaviourPunCallbacks
 	[SerializeField] Text playername;
 	[SerializeField] Text score;
 	Player player;
+	int scorePoints;
 
 	//when the player join the room the launcher will generate call back 
 	// then it will generate this "Player List Item"
-	public void SetUp(Player _player)
+	public void SetUp(Player Targetplayer)
 	{
-		player = _player;
+		player = Targetplayer;
+		scorePoints = (int)GameManager.basicinstance.ScoreList[player];
 		playername.text = player.NickName;
-		score.text = ":" +player.CustomProperties["score"];
-	}
-	public void SetUp(Player _player, int num)
-	{
-		player = _player;
-		playername.text = _player.NickName;
-		score.text = ":" + num;
+		score.text = scorePoints + "Point";
 	}
 
-	public override void OnPlayerLeftRoom(Player otherPlayer)
+    public void FixedUpdate()
+    {
+        scorePoints= (int)GameManager.basicinstance.ScoreList[player];
+		score.text = ":"+scorePoints + "Point";
+	}
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
 	{
 		if (player == otherPlayer)
 		{
@@ -38,10 +40,8 @@ public class ScoreBoardItem : MonoBehaviourPunCallbacks
 	public override void OnLeftRoom()
 	{
 		Destroy(gameObject);
+
 	}
 
-    private void FixedUpdate()
-    {
-		score.text = ":" + player.CustomProperties["score"];
-	}
+    
 }

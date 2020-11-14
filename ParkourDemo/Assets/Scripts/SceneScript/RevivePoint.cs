@@ -42,7 +42,7 @@ namespace Parkour
 
             if (index > RaceGameManager.instance.CurrentRevivePointIndex()) {
                 RaceGameManager.instance.setRevive(this);
-                RaceGameManager.instance.Scoreincrement(PhotonNetwork.LocalPlayer,10);
+                GameManager.basicinstance.Scoreincrement(PhotonNetwork.LocalPlayer,10);
             }
 
         }

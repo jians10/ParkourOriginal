@@ -21,6 +21,7 @@ namespace Parkour {
             base.Awake();
             foreach (var player in PhotonNetwork.PlayerList)
             {
+                //PlayerScoreList.Add(player.NickName, 0);
                 ScoreList.Add(player, 0);
                 Instantiate(roomListItemPrefab, ScoreBoardContent).GetComponent<ScoreBoardItem>().SetUp(player);
             }

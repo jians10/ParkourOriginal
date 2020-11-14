@@ -33,17 +33,21 @@ namespace Parkour
                 if (IR != null)
                 {
                     Activated = true;
-                    IncreaseScore();
+                    if (index > RaceGameManager.instance.CurrentRevivePointIndex())
+                    {
+                        IncreaseScore();
+                    }
                 }
             }
         }
 
         private void IncreaseScore() {
-
-            if (index > RaceGameManager.instance.CurrentRevivePointIndex()) {
+            if (index > RaceGameManager.instance.CurrentRevivePointIndex())
+            {
                 RaceGameManager.instance.setRevive(this);
-                GameManager.basicinstance.Scoreincrement(PhotonNetwork.LocalPlayer,10);
+                RaceGameManager.instance.IncreaseScore(PhotonNetwork.LocalPlayer, 10);
             }
+            
 
         }
 

@@ -72,7 +72,7 @@ public class PlayerManger : MonoBehaviour
         }
         else {
             RandomValueGenerator();
-            GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"),RightBound, Quaternion.identity);
+            GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerControllerNeo"), new Vector3(Xpos, LeftBound.y, Zpos), Quaternion.identity);
         }
     }
     void Update()
@@ -84,6 +84,10 @@ public class PlayerManger : MonoBehaviour
     {
         Zpos = Random.Range(Mathf.Min(RightBound.z, LeftBound.z), Mathf.Max(RightBound.z, LeftBound.z));
         Xpos = Random.Range(Mathf.Min(RightBound.x, LeftBound.x), Mathf.Max(RightBound.x, LeftBound.x));
+
+        //float[] choicesX = { Mathf.Min(RightBound.x, LeftBound.x), Mathf.Max(RightBound.x, LeftBound.x) };
+        //int XChoice = Random.Range(0, 2);
+        //Zpos = choicesX[XChoice];
     }
 
     [PunRPC]

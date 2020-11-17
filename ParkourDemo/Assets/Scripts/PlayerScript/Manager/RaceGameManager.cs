@@ -16,6 +16,7 @@ namespace Parkour {
         private TimerScript1 timeCounter;
         public GameObject EndGamePanel = null;
         private new void Awake() {
+            
             instance = this;
             timeCounter = GetComponent<TimerScript1>();
             base.Awake();

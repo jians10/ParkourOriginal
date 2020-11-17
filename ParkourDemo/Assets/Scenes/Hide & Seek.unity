@@ -21794,6 +21794,7 @@ MonoBehaviour:
   readyButton: {fileID: 1033025664}
   readyPanel: {fileID: 2114976571}
   numberCount: {fileID: 783148926}
+  G: {x: 0, y: -20, z: 0}
   MutantPlayerCount: 0
   MutantCounter: {fileID: 869926126}
   RunnerCounter: {fileID: 2087359649}

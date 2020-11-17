@@ -18,10 +18,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     Hashtable ReadyList;
     public Hashtable ScoreList;
     public Text numberCount;
+    public Vector3 G = new Vector3(0, -10f, 0);
    
 
     public void Awake()
     {
+        Physics.gravity = G;
         ReadyNumber = 0;
         ReadyList = new Hashtable();
         ScoreList = new Hashtable();

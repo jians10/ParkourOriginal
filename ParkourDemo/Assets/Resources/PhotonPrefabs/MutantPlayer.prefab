@@ -223,7 +223,7 @@ MonoBehaviour:
   mouseSensitivity: 10
   sprintSpeed: 6
   walkSpeed: 3
-  jumpForce: 300
+  jumpForce: 450
   smoothTime: 0.15
   Controller: {fileID: 0}
   MaxSpeed: 7
@@ -263,7 +263,7 @@ MonoBehaviour:
   PickupY: 0.5
   MinForce: 100
   PushForce: 0
-  MaxForce: 1000
+  MaxForce: 2000
   Charged: 0
   AbleToClimb: 0
   Climb: 0

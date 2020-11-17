@@ -4592,7 +4592,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185978238}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &185978240
 Camera:
   m_ObjectHideFlags: 0
@@ -7977,6 +7977,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 342549460}
+  - component: {fileID: 342549462}
+  - component: {fileID: 342549461}
   m_Layer: 0
   m_Name: Climable Wall
   m_TagString: Untagged
@@ -8001,6 +8003,44 @@ Transform:
   m_Father: {fileID: 1049702224}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &342549461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342549459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+--- !u!114 &342549462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342549459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 342549461}
+  viewIdField: 34
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &342990257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9844,6 +9884,7 @@ MonoBehaviour:
   readyButton: {fileID: 1026099934}
   readyPanel: {fileID: 418252584}
   numberCount: {fileID: 655069731}
+  G: {x: 0, y: -20, z: 0}
   Revive: {fileID: 2068662585}
   roomListItemPrefab: {fileID: 2084496866852690365, guid: e9db33c6139592647885eb41130703c1,
     type: 3}
@@ -9909,6 +9950,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 566695527}
+  - component: {fileID: 566695529}
+  - component: {fileID: 566695528}
   m_Layer: 0
   m_Name: ClimbableWall
   m_TagString: Untagged
@@ -9933,6 +9976,44 @@ Transform:
   m_Father: {fileID: 1350396182}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &566695528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566695526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+--- !u!114 &566695529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566695526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 566695528}
+  viewIdField: 35
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &567529111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22718,7 +22799,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640875553}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -26454,7 +26535,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937831193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

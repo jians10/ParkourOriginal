@@ -118,7 +118,7 @@ namespace Parkour
         public float PickupY;
         public float MinForce = 100;
         public float PushForce = 0;
-        public float MaxForce = 1000;
+        public float MaxForce = 2000;
         public bool Charged;
         protected float DistanceX;
         protected float DistanceY;
@@ -747,6 +747,7 @@ namespace Parkour
                 transform.rotation = Edge.transform.rotation;
                 GrabOffset = Edge.transform.up * -2.3f + Edge.transform.forward * (-0.1f) - Offset;
                 this.transform.position = Edge.transform.position + GrabOffset;
+                PV.RPC("UpEdge", RpcTarget.AllBuffered, new object[] { Edge.transform.position + GrabOffset });
                 State = PlayerState.Hanging;
 
             }

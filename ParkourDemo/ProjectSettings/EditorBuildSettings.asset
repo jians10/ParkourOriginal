@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MenuScene.unity
+    path: Assets/Scenes/Menu.unity
     guid: 14566a32531685746aaf75928fdf9e9b
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/Test.unity
     guid: 0888df2216b847c43b1f5cdd1c75914b
   - enabled: 1
     path: Assets/Scenes/Hide & Seek.unity
     guid: 9ce71009ec1398b4285e937c9a334dd8
   - enabled: 1
-    path: Assets/Scenes/Environment.unity
+    path: Assets/Scenes/Parkour.unity
     guid: 1f267030d7c1f1543bc49169d0a12511
   m_configObjects: {}

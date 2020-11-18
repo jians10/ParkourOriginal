@@ -3,6 +3,13 @@ Please check [ChangeLog (Weekly)](https://github.com/jians10/ParkourOriginal/blo
 
 Please check [Multi-player Experience Description](https://github.com/jians10/ParkourOriginal/blob/main/Multi-player%20Experience%20Description.md) for our game's multiplayer experience.
 
+## Game Videos
+Click on the following links to watch example game-play videos:
+
+[Parkour Mode](https://youtu.be/A6J-oLFG9Fs)
+
+[Hide & Seek Mode](https://youtu.be/ruB_Gl0veFo)
+
 ## Instruction to Open the Project:
 1. Clone the Parkour project from Github with URL https://github.com/jians10/ParkourOriginal.git
 

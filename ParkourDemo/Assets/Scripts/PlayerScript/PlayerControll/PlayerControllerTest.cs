@@ -141,6 +141,8 @@ namespace Parkour
         public GameObject PlayerIcon=null;
 
 
+        public JetPack JetEquip=null;
+
 
 
 
@@ -152,6 +154,7 @@ namespace Parkour
             CharacterAnimator = GetComponentInChildren<Animator>();
             MainCollider = GetComponent<CapsuleCollider>();
             PV = GetComponent<PhotonView>();
+            JetEquip = GetComponent<JetPack>();
         }
 
         protected void Start()
@@ -195,7 +198,7 @@ namespace Parkour
            // CharacterAnimator.SetBool("IsWallRunning", wallrun.isWallRunning);
             CharacterAnimator.SetBool("Slide", Input.Slide);
             CharacterAnimator.SetBool("Jump", Input.Jump);
-            CharacterAnimator.SetBool("flying", Input.Jet);
+            CharacterAnimator.SetBool("flying", Input.Jet&&JetEquip.JetActivate);
             CharacterAnimator.SetBool("Grab", Grab);
             CharacterAnimator.SetBool("UpTheWall", UpTheWall);
             CharacterAnimator.SetBool("DownTheWall", Input.PullDown);
@@ -402,13 +405,6 @@ namespace Parkour
         }
 
         // This is to separate the basic movement and special skills
-
-
-
-
-
-
-
 
 
 

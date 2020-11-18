@@ -25,13 +25,15 @@ namespace Parkour
         public bool JetActivate;
         public GameObject JetPackMesh;
         public float JetDurationTime=10;
-        public bool EndJet=false; 
+        public bool EndJet=false;
+        public PhotonView PV2;
         private void Awake()
         {
 
             rb = GetComponent<Rigidbody>();
             player = GetComponent<PlayerControllerTest>();
             Controller = GetComponent<InputReceive>();
+            PV2 = GetComponent<PhotonView>();
         }
 
 
@@ -46,11 +48,9 @@ namespace Parkour
         {
             if (!JetActivate)
             {
-                JetPackMesh.SetActive(false);
                 return;
-
             }
-            JetPackMesh.SetActive(true);
+            //JetPackMesh.SetActive(true);
             if (rb == null)
             {
                 return;
@@ -99,10 +99,19 @@ namespace Parkour
             if (EndJet)
             {
                 JetDurationTime= 10f;
-                JetActivate = false;
+                PV2.RPC("DisableJet", RpcTarget.All, new object[] { });
             }
 
         }
+
+        [PunRPC]
+        protected void DisableJet()
+        {
+            JetActivate = false;
+            Debug.Log("Squat");
+            JetPackMesh.SetActive(false);
+        }
+
 
 
 

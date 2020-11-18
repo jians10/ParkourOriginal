@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2331559022860332200
 Transform:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de2d5db34181a048ac63006f52feb76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JetForce: 1000
+  JetForce: 1500
   JetRecover: 2
   maxfuel: 20
   currentFuel: 20
@@ -193,6 +193,7 @@ MonoBehaviour:
   JetPackMesh: {fileID: 790898694773211978}
   JetDurationTime: 10
   EndJet: 0
+  PV2: {fileID: 0}
 --- !u!114 &911005700003520788
 MonoBehaviour:
   m_ObjectHideFlags: 0

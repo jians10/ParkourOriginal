@@ -23,7 +23,7 @@ public class JetPackPickUp : PickUp
         JetPack Playerjet = PhotonView.Find(PlayerID).gameObject.GetComponent<JetPack>();
 
         Playerjet.JetActivate = true;
-
+        Playerjet.JetPackMesh.SetActive(true);
         
         Destroy(gameObject);
     

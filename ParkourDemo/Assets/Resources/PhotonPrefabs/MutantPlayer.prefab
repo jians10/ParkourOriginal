@@ -271,6 +271,7 @@ MonoBehaviour:
   AbleToVault: 0
   Vault: 0
   PlayerIcon: {fileID: 0}
+  JetEquip: {fileID: 0}
   CheckingTarget: 0
   Attack: 0
   AbletoAttack: 0

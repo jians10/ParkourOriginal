@@ -34,6 +34,23 @@
 * MiniMap in Hide and Seek Map
 * Upgraded inter-user connection to enable more fluent multi-player gaming.
 
+## Week of 11/9
+* Created new prefabs for the Parkour mode.
+* Used new created prefabs to decorate the scene.
+* Enabled one-player full gameplay of Parkour mode.
+* Implemented the scoring board for Hide & Seek mode.
+* Solved bugs of infecting action.
+* Created a new bomb object -- the catcher will fall down for a few seconds if they touch this bomd
+
+## Week of 11/16
+* Created lava background scene & introduced background music for the Parkour mode.
+* Improved lighting for both scenes.
+* Implemented the scoring board for Parkour mode.
+* Enabled multi-player full gameplay of Parkour mode.
+* Enabled multi-player full gameplay of Parkour mode.
+* Improved jump movement to make it look more natural.
+
+
 ## Up-To-Date Control Guide:
 * **WASD** for movement.
 * **SPACE** for jump.

@@ -1365,7 +1365,7 @@ RectTransform:
   m_GameObject: {fileID: 377864820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 848714193}
   m_RootOrder: 0
@@ -1855,7 +1855,7 @@ RectTransform:
   m_GameObject: {fileID: 413049546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 2131649500}
   m_RootOrder: 0
@@ -3178,7 +3178,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Press R to Hang
 
-    Press w/s to Climb
+    Press w to Climb upward
 
     Press space to quitClimb'
   m_isRightToLeft: 0
@@ -3417,7 +3417,7 @@ RectTransform:
   m_GameObject: {fileID: 676094298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 774417637}
   m_RootOrder: 0
@@ -3446,7 +3446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press G to Hang
+  m_text: 'Press G and then W to get on to it
 
 '
   m_isRightToLeft: 0

@@ -31,11 +31,11 @@ Click on the following links to watch example game-play videos:
 1. The map implementation is still in progress
 
 ## Room Index
-Index 1: GameScene (This is our test scene so nothing fun to play around)
+Index 1: Training Mode (Get yourself familiar with the movements)
 
-Index 2: EnvironmentScene (This is the Speed Contest Mode, not finished yet, more prefabs to be added)
+Index 2: Parkour Mode
 
-Index 3: Hide & Seek (This is the Hide & Seek Mode)
+Index 3: Hide & Seek Mode
 
 ## Role Distribution:
 Leo: Map Design + Map Implementation + Documentation

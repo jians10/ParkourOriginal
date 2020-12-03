@@ -32,7 +32,7 @@ namespace Parkour
             Player.Input.LookV = Input.GetAxisRaw("Mouse Y");
             Player.Input.Jump = Input.GetButton("Jump");
             Player.Input.Jet = Input.GetKey(KeyCode.Tab);
-            Player.Input.Slide = Input.GetKey(KeyCode.CapsLock);
+            Player.Input.Slide = Input.GetKey(KeyCode.Q);
             Player.Input.Grab = Input.GetKey(KeyCode.G);
             Player.Input.Dash = Input.GetKey(KeyCode.LeftShift);
             Player.Input.PullUp = Input.GetKey(KeyCode.W);

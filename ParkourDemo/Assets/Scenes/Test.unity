@@ -1884,7 +1884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press Capslock to Slide
+  m_text: 'Press Q to Slide
 
 '
   m_isRightToLeft: 0

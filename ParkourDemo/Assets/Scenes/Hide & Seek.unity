@@ -21959,7 +21959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLeft: 0
-  timerValue: 180
+  timerValue: 240
   Clock: {fileID: 568748753}
 --- !u!1 &1544786707
 GameObject:
